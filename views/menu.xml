@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+      <menuitem
+            id="menu_puerto"
+            name="Puerto transit"
+            sequence="0"/>
+
+      <menuitem
+            id="menu_folders_master"
+            name="Folder"
+            sequence="1"/>
+
+        <menuitem
+            id="menu_hospital"
+            name="Create folder"
+            action="action_create_folder"
+            parent="menu_folders_master"
+            sequence="0"/>
+
+</odoo>

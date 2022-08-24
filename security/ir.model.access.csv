@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+puerto_application.access_folder_managment,access_folder_managment,puerto_application.model_folder_managment,base.group_user,1,1,1,1
+puerto_application.access_dum_number,access_dum_number,puerto_application.model_dum_number,base.group_user,1,1,1,1
+puerto_application.access_expiditeur_select,access_expiditeur_select,puerto_application.model_expiditeur_select,base.group_user,1,1,1,1
+puerto_application.access_bureaux_dedouan,access_bureaux_dedouan,puerto_application.model_bureaux_dedouan,base.group_user,1,1,1,1
+puerto_application.access_origin_select,access_origin_select,puerto_application.model_origin_select,base.group_user,1,1,1,1
+puerto_application.access_transport_control,access_transport_control,puerto_application.model_transport_control,base.group_user,1,1,1,1
+puerto_application.access_compagine,access_compagine,puerto_application.model_compagine,base.group_user,1,1,1,1
+puerto_application.access_transporter,access_transporter,puerto_application.model_transporter,base.group_user,1,1,1,1
+puerto_application.access_transitaire,access_transitaire,puerto_application.model_transitaire,base.group_user,1,1,1,1
+puerto_application.access_pieceattach_control,access_pieceattach_control,puerto_application.model_pieceattach_control,base.group_user,1,1,1,1

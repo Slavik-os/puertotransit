@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--  Form  View  -->
+        <record id="view_hospital_patient_form" model="ir.ui.view">
+            <field name="name">folder.managment.form</field>
+            <field name="model">folder.managment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="priority" widget="priority" class="mr-3"/>
+                            </h1>
+                        </div>
+                        <h4>Information sur le dum</h4>
+                        <group>
+                                <group>
+                                    <field name="created_date"/>
+                                    <field name="folder_type"/>
+                                </group>
+                            <group>
+                                <field name="n_dum"/>
+                            </group>
+                            <group>
+                                <field name="destinataire" />
+                                <field name="dum_start_date" />
+                                <field name="dum_end_date" />
+                            </group>
+                        </group>
+
+                        <group>
+                                <group>
+                                    <field name="n_serie"/>
+                                    <field name="bureax_dedouane"/>
+                                    <field name="arrondissement"/>
+                                </group>
+                            <group>
+                                    <field name="regime"/>
+                                    <field name="bureaux_destinataire"/>
+                                    <field name="lieu_stockage"/>
+                                </group>
+                        </group>
+
+                        <!-- Notebook -->
+                        <notebook>
+                            <page string="Detail Du Dossier">
+                                <group>
+                                    <group>
+                                        <field name="n_dossier"/>
+                                        <field name="declaration"
+                                               attrs="{'readonly':[('folder_type','!=','proviesior')]}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="repection_datetime"/>
+                                        <field name="tr"/>
+                                        <field name="referance_tr"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="origine"/>
+                                        <field name="mode_transport"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="provenance"/>
+                                        <field name="compagine"/>
+                                        <!-- On condition mode transport -->
+                                        <field name="type_transport_route"
+                                               attrs="{'invisible': [('mode_transport', '!=', 'Routière')]}"/>
+                                        <field name="type_transport_route_martime"
+                                               attrs="{'invisible': [('mode_transport', '!=', 'Routière\Maritime')]}"/>
+                                        <field name="type_transport_plain"
+                                               attrs="{'invisible': [('mode_transport', '!=', 'Aérrienne')]}"/>
+                                    </group>
+
+                                    <group attrs="{'invisible': [('mode_transport', '!=', 'Aérrienne')]}">
+                                        <field name="ref_depot"
+                                               attrs="{'invisible': [('type_transport_plain', '!=', 'H.C.')]}" />
+                                        <field name="HAWB_LTA"
+                                               attrs="{'invisible': [('type_transport_plain', '!=', 'R.freight')]}" />
+                                        <field name="ref_lta"
+                                               attrs="{'invisible': [('type_transport_plain', '!=', 'Charter')]}" />
+ 			                        </group>
+
+                                    <!-- On condition Type transport -->
+                                    <!-- Contenair -->
+                                    <group attrs="{'invisible': [('mode_transport', '!=', 'Routière\Maritime')]}">
+                                        <field name="matricule"
+                                               attrs="{'invisible': [('type_transport_route_martime', '==', 'Contenair')]}"/>
+                                        <field name="ref_tc"
+                                               attrs="{'invisible': [('type_transport_route_martime', '!=', 'Contenair')]}"/>
+
+                                    </group>
+                                    <group attrs="{'invisible': ['|',('mode_transport', '!=', 'Routière'),
+                                                  ('type_transport_route_martime', '!=', 'Contenair')  ]}">
+                                            <field name="matricule" />
+ 			                        </group>
+                                     <group attrs="{'invisible': ['|',('mode_transport', '!=', 'Routière\Maritime') , ('mode_transport', '!=', 'Aérrienne')]}">
+			                            <field name="bateau" />
+			                        </group>
+                                    <group attrs="{'invisible': ['|',('mode_transport', '!=', 'Routière'),
+                                                  ('type_transport_route_martime', '!=', 'Contenair')  ]}">
+                                                 <field name="ref_lta" />
+                                    </group>
+
+                                    <group>
+                                        <field name="type_ds"/>
+                                        <field name="ref_compagine"/>
+                                        <field name="ref_client"/>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <group>
+                                        <field name="datetime_travel"/>
+                                        <field name="connaissement_number"/>
+                                        <field name="proids_brut"/>
+                                    </group>
+
+                                     <group>
+                                        <field name="transitaire"/>
+                                        <field name="ref_transitaire"/>
+                                        <field name="number_colis"/>
+                                    </group>
+                                </group>
+
+
+                                <group>
+                                    <field name="designation_marchandise"/>
+                                    <field name="expiditeur"/>
+                                    <field name="destinataire"/>
+                                </group>
+
+                                <group>
+                                    <field name="observation"/>
+                                </group>
+                                <group>
+                                    <notebook>
+                                        <page string="attach une piece" >
+                                            <field name="upload_files_ids">
+                                                <tree>
+                                                    <field name="file_name_upload" />
+                                                    <field name="upload" />
+                                                    <field name="comment"/>
+                                                </tree>
+                                                 <form>
+                                                     <group>
+                                                        <field name="file_name_upload" invisible="1"/>
+                                                        <field name="upload" filename="file_name_upload"/>
+                                                        <field name="comment"/>
+                                                     </group>
+                                                </form>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="active_scelle_douane" string=" "/>
+                                        <field name="N_scelle_douane" attrs="{'readonly':[('active_scelle_douane','==',False)]}"/>
+                                    </group>
+                                     <group>
+                                        <field name="active_scelle_client" string=" "/>
+                                        <field name="N_scelle_client" attrs="{'readonly':[('active_scelle_client','==',False)]}"/>
+                                        <field name="cadna" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="n_chasse" />
+                                        <field name="active_demond_traction" string=" "/>
+                                        <field name="demond_traction" attrs="{'readonly':[('active_demond_traction','==',False)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="motif_traction"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page string="Liste Des Factures"></page>
+                            <page string="Les Charges Du Dossier"></page>
+                            <page string="Les Document Annexees"></page>
+                            <page string="Cercuit de Validation"></page>
+                            <page string="Tracking Externe"></page>
+                            <page string="Historique"></page>
+                        </notebook>
+                        <!-- Notebook end -->
+                    </sheet>
+
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" group="base.group.user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                    <!-- Chatter End-->
+                </form>
+            </field>
+        </record>
+<!--  Form  View End -->
+
+</odoo>

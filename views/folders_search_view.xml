@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  Search View  -->
+            <record id="view_folder_managment_search" model="ir.ui.view">
+            <field name="name">folder.managment.search</field>
+            <field name="model">folder.managment</field>
+            <field name="arch" type="xml">
+                <search>
+                      <field name="folder_type" filter_domain="['|',('folder_type','ilike',self),('difinitive','ilike',self)]"/>
+                      <group expand="0" string="Group By">
+                          <filter string="Folder type" name="folder_type" context="{'group_by': 'folder_type'}"/>
+                      </group>
+                      <searchpanel>
+                          <field name="folder_type" icon="fa-folder-open"  enable_counter="1" select="multi"/>
+                      </searchpanel>
+                </search>
+            </field>
+        </record>
+<!--  Search View End -->
+</odoo>

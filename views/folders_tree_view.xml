@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--  Tree View  -->
+            <record id="view_folder_managment_tree" model="ir.ui.view">
+                <field name="name">folder.managment.tree</field>
+                <field name="model">folder.managment</field>
+                <field name="arch" type="xml">
+                    <tree decoration-success="priority == '0'"
+                          decoration-danger="priority == '2'">
+                          <field name="created_date" />
+                          <field name="priority" decoration-success="priority == '0'"
+                                                 decoration-warning = "priority == '1'"
+                                                 decoration-danger = "priority == '2'"
+                                                 decoration-muted = "priority == '3'"
+                                                 widget = 'badge'/>
+                          <field name="folder_type" />
+
+                          <field name="state" decoration-success="state == 'done'"
+                                              decoration-warning = "state == 'draft'"
+                                              decoration-danger = "state == 'cancel'"
+                                              decoration-muted = "state == 'in_consultation'"
+                                              widget = 'badge'/>
+                    </tree>
+            </field>
+        </record>
+<!--  Tree View End -->
+</odoo>
